@@ -13,7 +13,7 @@ Grand Consoler is a premium VS Code extension designed for developers who demand
 ## ✨ Features
 
 ### 💎 Smart Log Insertion
-Never type a manual log again. Use `Ctrl+Alt+L` (or `Cmd+Alt+L` on Mac) to insert a beautifully formatted, 3-line console output that includes:
+Never type a manual log again. Use `Ctrl+Alt+L` (or `Ctrl+Option+L` on Mac) to insert a beautifully formatted, 3-line console output that includes:
 - 🚀 **Rocket Emoji Branding**
 - 📍 **Exact File & Line Number**
 - 🏷️ **Context-Aware Function Name** (Classes, methods, and arrow functions)
@@ -35,7 +35,7 @@ A central hub for every log in your project.
 
 | Action | Keybinding (Mac/Win) |
 | :--- | :--- |
-| **Insert Formatted Log** | `Ctrl` + `Alt` + `L` |
+| **Insert Formatted Log** | `Ctrl` + `Alt/Option` + `L` |
 | **Refresh Sidebar** | (Icon in Sidebar Title) |
 | **Global Cleanup** | (Actions in Sidebar Title) |
 
@@ -52,7 +52,7 @@ A central hub for every log in your project.
 
 1. **Install** the extension.
 2. Open any `.ts` or `.dart` file.
-3. Highlight a variable and press **`Ctrl+Alt+L`**.
+3. Highlight a variable and press **`Ctrl+Alt/Option+L`**.
 4. Open the **Grand Consoler Activity Bar** (Terminal Icon) to see your logs grouped and ready for action.
 
 ---
