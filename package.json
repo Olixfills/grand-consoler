@@ -1,0 +1,129 @@
+{
+  "name": "grand-consoler",
+  "displayName": "Grand Consoler",
+  "description": "Premium logging tracking and management for JS, TS, and Flutter.",
+  "version": "0.0.1",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "grand-consoler.insertLog",
+        "title": "Insert Formatted Log",
+        "category": "Grand Consoler"
+      },
+      {
+        "command": "grand-consoler.commentAll",
+        "title": "Comment All Logs",
+        "category": "Grand Consoler"
+      },
+      {
+        "command": "grand-consoler.uncommentAll",
+        "title": "Uncomment All Logs",
+        "category": "Grand Consoler"
+      },
+      {
+        "command": "grand-consoler.deleteAll",
+        "title": "Delete All Logs",
+        "category": "Grand Consoler"
+      },
+      {
+        "command": "grand-consoler.deleteLog",
+        "title": "Delete Log",
+        "category": "Grand Consoler",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "grand-consoler.toggleComment",
+        "title": "Toggle Comment",
+        "category": "Grand Consoler",
+        "icon": "$(comment)"
+      },
+      {
+        "command": "grand-consoler.refresh",
+        "title": "Refresh Logs",
+        "category": "Grand Consoler",
+        "icon": "$(refresh)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "grand-consoler.insertLog",
+        "key": "ctrl+alt+l",
+        "mac": "ctrl+alt+l",
+        "when": "editorTextFocus"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "grand-consoler-explorer",
+          "title": "Grand Consoler",
+          "icon": "$(terminal-view-icon)"
+        }
+      ]
+    },
+    "views": {
+      "grand-consoler-explorer": [
+        {
+          "id": "grand-consoler-list",
+          "name": "Active Logs"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "grand-consoler.refresh",
+          "when": "view == grand-consoler-list",
+          "group": "navigation"
+        },
+        {
+          "command": "grand-consoler.commentAll",
+          "when": "view == grand-consoler-list"
+        },
+        {
+          "command": "grand-consoler.deleteAll",
+          "when": "view == grand-consoler-list"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "grand-consoler.toggleComment",
+          "when": "view == grand-consoler-list && viewItem == logStatement",
+          "group": "inline"
+        },
+        {
+          "command": "grand-consoler.deleteLog",
+          "when": "view == grand-consoler-list && viewItem == logStatement",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.85.0",
+    "@types/node": "20.x",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/parser": "^6.19.1",
+    "@typescript-eslint/eslint-plugin": "^6.19.1"
+  }
+}
