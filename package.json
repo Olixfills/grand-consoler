@@ -3,6 +3,12 @@
   "displayName": "Grand Consoler",
   "description": "Premium logging tracking and management for JS, TS, and Flutter.",
   "version": "0.0.1",
+  "publisher": "olixfills",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/olixfills/grand-consoler"
+  },
   "icon": "icon.png",
   "engines": {
     "vscode": "^1.85.0"

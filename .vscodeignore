@@ -1,0 +1,12 @@
+.vscode/**
+.vscode-test/**
+.agents/**
+.gemini/**
+src/**
+tsconfig.json
+.gitignore
+.eslintignore
+.eslintrc.json
+npm-debug.log
+node_modules/**
+out/test/**
