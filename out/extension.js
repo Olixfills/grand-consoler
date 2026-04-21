@@ -41,16 +41,32 @@ const scannerService_1 = require("./services/scannerService");
 const sidebarProvider_1 = require("./services/sidebarProvider");
 const decorationService_1 = require("./services/decorationService");
 function activate(context) {
-    const insertionService = new insertionService_1.InsertionService();
-    const scannerService = new scannerService_1.ScannerService();
-    const decorationService = new decorationService_1.DecorationService();
+    // 1. Initialize UI Provider first to ensure sidebar is registered ASAP
     const sidebarProvider = new sidebarProvider_1.GrandConsolerSidebarProvider();
-    // Register Sidebar
     vscode.window.registerTreeDataProvider('grand-consoler-list', sidebarProvider);
-    // Register Commands
-    context.subscriptions.push(vscode.commands.registerCommand('grand-consoler.insertLog', () => {
-        insertionService.insertLog();
-        sidebarProvider.refresh();
+    // 2. Wrap risky service initialization in a try-catch to prevent total activation failure
+    let insertionService;
+    let scannerService;
+    let decorationService;
+    try {
+        insertionService = new insertionService_1.InsertionService();
+        scannerService = new scannerService_1.ScannerService();
+        decorationService = new decorationService_1.DecorationService();
+    }
+    catch (error) {
+        console.error('Grand Consoler service initialization failed:', error);
+        vscode.window.showErrorMessage('Grand Consoler failed to initialize core services. Check developer console for details.');
+        return;
+    }
+    // 3. Register Commands
+    context.subscriptions.push(vscode.commands.registerCommand('grand-consoler.insertLog', async () => {
+        try {
+            await insertionService.insertLog();
+            sidebarProvider.refresh();
+        }
+        catch (err) {
+            vscode.window.showErrorMessage('Failed to insert log: ' + err);
+        }
     }), vscode.commands.registerCommand('grand-consoler.refresh', () => {
         sidebarProvider.refresh();
     }), vscode.commands.registerCommand('grand-consoler.commentAll', async () => {

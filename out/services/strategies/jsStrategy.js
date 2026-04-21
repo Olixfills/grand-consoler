@@ -40,6 +40,7 @@ exports.JSPlacementStrategy = void 0;
 const vscode = __importStar(require("vscode"));
 const parser = __importStar(require("@babel/parser"));
 const traverse_1 = __importDefault(require("@babel/traverse"));
+const traverse = traverse_1.default.default || traverse_1.default;
 const t = __importStar(require("@babel/types"));
 class JSPlacementStrategy {
     async calculate(document, selection, variableName) {
@@ -52,7 +53,7 @@ class JSPlacementStrategy {
         let targetNode = null;
         const offset = document.offsetAt(selection.active);
         // 1. Find the deepest node at the selection
-        (0, traverse_1.default)(ast, {
+        traverse(ast, {
             enter(path) {
                 if (path.node.start <= offset && path.node.end >= offset) {
                     if (!targetNode || (path.node.end - path.node.start < targetNode.end - targetNode.start)) {
@@ -80,7 +81,7 @@ class JSPlacementStrategy {
     }
     findParentArrow(ast, offset) {
         let arrow = null;
-        (0, traverse_1.default)(ast, {
+        traverse(ast, {
             ArrowFunctionExpression(path) {
                 if (path.node.start <= offset && path.node.end >= offset) {
                     if (path.node.expression) {
@@ -93,7 +94,7 @@ class JSPlacementStrategy {
     }
     findFunctionAtSelection(ast, offset) {
         let func = null;
-        (0, traverse_1.default)(ast, {
+        traverse(ast, {
             "FunctionDeclaration|ClassMethod|FunctionExpression"(path) {
                 const node = path.node;
                 // If the selection is on the identifier (name) of the function

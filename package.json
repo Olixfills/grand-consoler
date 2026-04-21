@@ -2,7 +2,7 @@
   "name": "grand-consoler",
   "displayName": "Grand Consoler",
   "description": "Premium logging tracking and management for JS, TS, and Flutter.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "olixfills",
   "license": "MIT",
   "repository": {
@@ -17,7 +17,13 @@
     "Other"
   ],
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "onView:grand-consoler-list",
+    "onCommand:grand-consoler.insertLog",
+    "onCommand:grand-consoler.refresh",
+    "onCommand:grand-consoler.commentAll",
+    "onCommand:grand-consoler.uncommentAll",
+    "onCommand:grand-consoler.deleteAll"
   ],
   "main": "./out/extension.js",
   "contributes": {

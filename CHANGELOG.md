@@ -2,6 +2,13 @@
 
 All notable changes to the "Grand Consoler" extension will be documented in this file.
 
+## [0.1.1] - 2026-04-21
+
+### Fixed
+- **Extension Activation**: Fixed a regression that prevented the extension from loading in v0.1.0.
+- **Sidebar Integration**: Ensured the "Active Logs" view registers correctly upon startup.
+- **Babel Interop**: Resolved a runtime crash related to Babel traverse imports.
+
 ## [0.1.0] - 2026-04-21
 
 ### Added

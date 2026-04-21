@@ -5,19 +5,34 @@ import { GrandConsolerSidebarProvider } from './services/sidebarProvider';
 import { DecorationService } from './services/decorationService';
 
 export function activate(context: vscode.ExtensionContext) {
-    const insertionService = new InsertionService();
-    const scannerService = new ScannerService();
-    const decorationService = new DecorationService();
+    // 1. Initialize UI Provider first to ensure sidebar is registered ASAP
     const sidebarProvider = new GrandConsolerSidebarProvider();
-
-    // Register Sidebar
     vscode.window.registerTreeDataProvider('grand-consoler-list', sidebarProvider);
 
-    // Register Commands
+    // 2. Wrap risky service initialization in a try-catch to prevent total activation failure
+    let insertionService: InsertionService;
+    let scannerService: ScannerService;
+    let decorationService: DecorationService;
+
+    try {
+        insertionService = new InsertionService();
+        scannerService = new ScannerService();
+        decorationService = new DecorationService();
+    } catch (error) {
+        console.error('Grand Consoler service initialization failed:', error);
+        vscode.window.showErrorMessage('Grand Consoler failed to initialize core services. Check developer console for details.');
+        return;
+    }
+
+    // 3. Register Commands
     context.subscriptions.push(
-        vscode.commands.registerCommand('grand-consoler.insertLog', () => {
-            insertionService.insertLog();
-            sidebarProvider.refresh();
+        vscode.commands.registerCommand('grand-consoler.insertLog', async () => {
+            try {
+                await insertionService.insertLog();
+                sidebarProvider.refresh();
+            } catch (err) {
+                vscode.window.showErrorMessage('Failed to insert log: ' + err);
+            }
         }),
 
         vscode.commands.registerCommand('grand-consoler.refresh', () => {
