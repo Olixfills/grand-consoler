@@ -61,7 +61,7 @@ A central hub for every log in your project.
 
 If you want to use the extension without running a debugger or to share it with friends, you can install the pre-packaged `.vsix` file:
 
-1.  **Download** the `grand-consoler-0.0.1.vsix` file from the root of this repository.
+1.  **Download** the `grand-consoler-0.1.0.vsix` file from the root of this repository.
 2.  In VS Code, open the **Extensions** view (`Cmd+Shift+X`).
 3.  Click the **...** (More Actions) button in the top right of the sidebar.
 4.  Select **Install from VSIX...**

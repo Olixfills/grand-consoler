@@ -2,7 +2,7 @@
   "name": "grand-consoler",
   "displayName": "Grand Consoler",
   "description": "Premium logging tracking and management for JS, TS, and Flutter.",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "publisher": "olixfills",
   "license": "MIT",
   "repository": {
@@ -125,11 +125,19 @@
     "test": "node ./out/test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.85.0",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.28.0",
     "@types/node": "20.x",
-    "typescript": "^5.3.3",
-    "eslint": "^8.56.0",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
-    "@typescript-eslint/eslint-plugin": "^6.19.1"
+    "eslint": "^8.56.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@babel/parser": "^7.29.2",
+    "@babel/traverse": "^7.29.0",
+    "@babel/types": "^7.29.0"
   }
 }
