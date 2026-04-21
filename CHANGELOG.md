@@ -2,6 +2,12 @@
 
 All notable changes to the "Grand Consoler" extension will be documented in this file.
 
+## [0.1.2] - 2026-04-21
+
+### Fixed
+- **Critical: Extension not loading**: Babel dependencies (`@babel/parser`, `@babel/traverse`, `@babel/types`) were excluded from the VSIX package because `node_modules` is ignored. Switched to **esbuild bundling** to inline all dependencies into a single `dist/extension.js` file.
+- **Build pipeline**: Replaced raw `tsc` compilation with esbuild for proper dependency bundling.
+
 ## [0.1.1] - 2026-04-21
 
 ### Fixed

@@ -3,10 +3,11 @@
 .agents/**
 .gemini/**
 src/**
+out/**
 tsconfig.json
+esbuild.js
 .gitignore
 .eslintignore
 .eslintrc.json
 npm-debug.log
 node_modules/**
-out/test/**

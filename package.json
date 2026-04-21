@@ -2,7 +2,7 @@
   "name": "grand-consoler",
   "displayName": "Grand Consoler",
   "description": "Premium logging tracking and management for JS, TS, and Flutter.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "publisher": "olixfills",
   "license": "MIT",
   "repository": {
@@ -25,7 +25,7 @@
     "onCommand:grand-consoler.uncommentAll",
     "onCommand:grand-consoler.deleteAll"
   ],
-  "main": "./out/extension.js",
+  "main": "./dist/extension.js",
   "contributes": {
     "commands": [
       {
@@ -123,9 +123,11 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "watch": "tsc -watch -p ./",
+    "vscode:prepublish": "npm run package",
+    "compile": "npm run check-types && node esbuild.js",
+    "check-types": "tsc --noEmit",
+    "watch": "node esbuild.js --watch",
+    "package": "npm run check-types && node esbuild.js --production",
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test": "node ./out/test/runTest.js"
@@ -138,6 +140,7 @@
     "@types/vscode": "^1.85.0",
     "@typescript-eslint/eslint-plugin": "^6.19.1",
     "@typescript-eslint/parser": "^6.19.1",
+    "esbuild": "^0.28.0",
     "eslint": "^8.56.0",
     "typescript": "^5.3.3"
   },

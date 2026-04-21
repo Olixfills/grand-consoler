@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import * as parser from '@babel/parser';
-import _traverse from '@babel/traverse';
-const traverse = (_traverse as any).default || _traverse;
+import traverse from '@babel/traverse';
 import * as t from '@babel/types';
 
 export interface PlacementResult {
